@@ -1,5 +1,9 @@
-import dvc.api
+import pandas as pd
 
-df = dvc.api.read('train_data.csv',
-                  repo='gdrive://1glMslxpGLmz_GwYXUdiy5hr5C2vEIW_Q')
-print(df)
+from dvc.repo import Repo
+
+repo = Repo(".")
+repo.pull()
+
+
+

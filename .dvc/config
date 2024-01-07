@@ -1,4 +1,5 @@
 [core]
-    remote = add_data
-['remote "add_data"']
+    remote = myremote
+['remote "myremote"']
     url = gdrive://1glMslxpGLmz_GwYXUdiy5hr5C2vEIW_Q
+    gdrive_acknowledge_abuse = true
