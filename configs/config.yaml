@@ -1,6 +1,6 @@
 train_params:
     n_classes: 2
-    n_epoch: 2
+    n_epoch: 5
     batch_size: 128
 
 image_params:
@@ -17,5 +17,5 @@ path:
     save_model_dirname: model
 
 mlflow_params:
-    url: http://127.0.0.1:5000
+    url: http://128.0.1.1:8080
     name: binary_classification_experiments
