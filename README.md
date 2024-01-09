@@ -1,3 +1,5 @@
+[![pre-commit](https://github.com/milanakuchumova/mlops_hw/actions/workflows/pre-commit.yml/badge.svg)](https://github.com/milanakuchumova/mlops_hw/actions/workflows/pre-commit.yml)
+
 # Image Classification
 
 ## About
