@@ -1,0 +1,15 @@
+train_params:
+  n_classes: 2
+  n_epoch: 5
+  batch_size: 128
+
+image_params:
+  size_h: 32
+  size_w: 32
+
+optim_params:
+  lr: 0.1
+  momentum: 0.9
+
+path:
+  data_path: data

@@ -1,7 +1,7 @@
 [tool.poetry]
-name = "mlops-hw"
+name = "binary_classifier"
 version = "0.1.0"
-description = ""
+description = "Prediction the year of the song's release by its audio signature"
 authors = ["milanakuchumova <milanakych@gmail.com>"]
 readme = "README.md"
 
@@ -10,7 +10,19 @@ python = "^3.10"
 pandas = "^2.1.4"
 dvc = "^3.38.1"
 dvc-gdrive = "^3.0.1"
+torch = [
+    { platform = "darwin", url = "https://download.pytorch.org/whl/nightly/cpu/torch-2.3.0.dev20240107-cp312-none-macosx_11_0_arm64.whl" },
+    { platform = "linux", version = "^2.1.0" },
+]
+scikit-learn = "^1.3.2"
+torchvision = {url = "https://download.pytorch.org/whl/nightly/cpu/torchvision-0.18.0.dev20240107-cp312-cp312-macosx_11_0_arm64.whl"}
+mlflow = "^2.9.2"
+importlib-metadata = "4.13.0"
 
+[[tool.poetry.source]]
+name = "pytorch"
+url = "https://download.pytorch.org/whl/nightly/cpu"
+priority = "explicit"
 
 [build-system]
 requires = ["poetry-core"]
