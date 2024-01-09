@@ -160,7 +160,11 @@ cython_debug/
 #.idea/
 
 *.DS_Store
-/data
-/data.zip
+data/
+data.zip
 
-/outputs
+outputs/
+model/
+
+predictions.csv
+mlruns/

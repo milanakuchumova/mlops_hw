@@ -1,10 +1,12 @@
-from torch import nn
-import torch
+from pathlib import Path
+
+import mlflow
 import numpy as np
+import torch
 from tqdm import tqdm
 
 
-class Trainer():
+class Trainer:
     def __init__(self, model, optimizer, criterion, n_epochs, scheduler=None):
         super().__init__()
         self.model = model
@@ -12,7 +14,7 @@ class Trainer():
         self.criterion = criterion
         self.scheduler = scheduler
         self.n_epochs = n_epochs
-        
+
     def test(self, loader):
         loss_log = []
         acc_log = []
@@ -33,7 +35,7 @@ class Trainer():
         acc_log = []
         self.model.train()
 
-        for data, target in tqdm(train_loader):
+        for data, target in train_loader:
             self.optimizer.zero_grad()
             predictions = self.model(data)
             loss = self.criterion(predictions, target)
@@ -52,7 +54,7 @@ class Trainer():
         val_loader = data.val_loader
         train_loss_log, train_acc_log, val_loss_log, val_acc_log = [], [], [], []
 
-        for epoch in range(self.n_epochs):
+        for epoch in tqdm(range(self.n_epochs)):
             train_loss, train_acc = self.train_epoch(train_loader)
             val_loss, val_acc = self.test(val_loader)
 
@@ -62,12 +64,17 @@ class Trainer():
             val_loss_log.append(val_loss)
             val_acc_log.append(val_acc)
 
-            print(f"Epoch {epoch}")
-            print(f" train loss: {np.mean(train_loss)}, train acc: {np.mean(train_acc)}")
-            print(f" val loss: {val_loss}, val acc: {val_acc}\n")
+            mlflow.log_metric("train loss", np.mean(train_loss), step=epoch)
+            mlflow.log_metric("val loss", val_loss, step=epoch)
+            mlflow.log_metric("train acc", np.mean(train_acc), step=epoch)
+            mlflow.log_metric("val acc", val_acc, step=epoch)
 
             if self.scheduler is not None:
                 self.scheduler.step()
 
         return train_loss_log, train_acc_log, val_loss_log, val_acc_log
 
+    def save_model(self, dir_name, file_name):
+        path = Path(dir_name) / file_name
+        path.parent.mkdir(parents=True, exist_ok=True)
+        torch.save(self.model, path)
