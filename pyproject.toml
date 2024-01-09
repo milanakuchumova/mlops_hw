@@ -1,7 +1,7 @@
 [tool.poetry]
-name = "mlops-hw"
+name = "binary_classifier"
 version = "0.1.0"
-description = ""
+description = "Prediction the year of the song's release by its audio signature"
 authors = ["milanakuchumova <milanakych@gmail.com>"]
 readme = "README.md"
 
@@ -10,7 +10,12 @@ python = "^3.10"
 pandas = "^2.1.4"
 dvc = "^3.38.1"
 dvc-gdrive = "^3.0.1"
-
+scikit-learn = "^1.3.2"
+mlflow = "^2.9.2"
+importlib-metadata = "4.13.0"
+torch = "^2.1.2"
+torchvision = "^0.16.2"
+pre-commit = "^3.6.0"
 
 [build-system]
 requires = ["poetry-core"]
